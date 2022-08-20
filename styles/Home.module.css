@@ -112,3 +112,11 @@
 	background-color: #cecbcb75;
 	color: #252525a4;
 }
+
+@media screen and (max-width:510px) {
+	.container {
+
+		padding: 2px;
+		width: 100%;
+	}
+}
