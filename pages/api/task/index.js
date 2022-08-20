@@ -1,4 +1,3 @@
-import { handleClientScriptLoad } from "next/script"
 import Task from "../../../models/Task"
 import dbConnect from "../../../utils/dbConnect"
 

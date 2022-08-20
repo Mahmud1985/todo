@@ -1,14 +1,15 @@
 import axios from 'axios';
-import Head from 'next/head'
-import Image from 'next/image'
 import { useState } from 'react'
 import styles from '../styles/Home.module.css'
 
-const url = `${process.env.DOMAIN}/api/task`
+const domainUrl = `${process.env.DOMAIN}/api/task`
+
 
 export default function Home(props) {
   const [tasks, setTasks] = useState(props.tasks)
   const [task, setTask] = useState({ task: "" })
+
+  const url = "/api/task"
 
   const handleChange = ({ currentTarget: input }) => {
     input.value === ""
@@ -20,6 +21,7 @@ export default function Home(props) {
     e.preventDefault();
     try {
       if (task._id) {
+        console.log(url)
         const { data } = await axios.put(url + "/" + task._id, {
           task: task.task,
         });
@@ -91,7 +93,7 @@ export default function Home(props) {
             <input
               type="checkbox"
               className={styles.check_box}
-              check={task.completed}
+              checked={task.completed}
               onChange={() => updateTask(task._id)}
             />
             <p
@@ -123,8 +125,8 @@ export default function Home(props) {
 }
 
 export const getServerSideProps = async () => {
-  const { data } = await axios.get(url);
-  //console.log(data.data)
+  const { data } = await axios.get(domainUrl);
+  console.log(data.data)
   return {
     props: {
       tasks: data.data,
